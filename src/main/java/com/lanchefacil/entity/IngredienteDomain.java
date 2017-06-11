@@ -1,14 +1,9 @@
 package com.lanchefacil.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import com.lanchefacil.business.PromocaoBusiness;
 
-@Entity
 public class IngredienteDomain {
 	
-	@Id
 	private Integer id;
 	private String nome;
 	private Double valor;
