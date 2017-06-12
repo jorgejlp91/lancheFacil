@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.lanchefacil.entity.IngredienteDomain;
 import com.lanchefacil.entity.LancheDomain;
 import com.lanchefacil.entity.ListaPromocao;
@@ -17,6 +19,7 @@ import com.lanchefacil.util.MemDatabase;
  * @author jorgep
  *
  */
+@Component
 public class PromocaoBusiness {
 
 	public static DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -30,7 +33,7 @@ public class PromocaoBusiness {
 	 * @return lista com todas as promoções contempladas
 	 * @throws ParseException
 	 */
-	public static ListaPromocao calculaDescontoPromocao(LancheDomain lanche) throws ParseException {
+	public ListaPromocao calculaDescontoPromocao(LancheDomain lanche) throws ParseException {
 
 		List<Promocao> promocoes = new ArrayList<Promocao>();
 

@@ -1,5 +1,6 @@
 package com.lanchefacil.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ import com.lanchefacil.util.ValidacoesUtil;
 public class LancheController {
 	
 	private LancheDao dao = new LancheDao();
+	
+	@Autowired
+	private PromocaoBusiness promocaoBusiness;
 	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(path = "listAll", method = RequestMethod.GET, produces = "application/json")	
@@ -53,7 +57,7 @@ public class LancheController {
 	public ResponseEntity promocoes(@RequestBody LancheDomain lanche) {		
 		try {
 			ValidacoesUtil.validate(lanche);
-			ListaPromocao listaPromocao = PromocaoBusiness.calculaDescontoPromocao(lanche);
+			ListaPromocao listaPromocao = promocaoBusiness.calculaDescontoPromocao(lanche);
 			return new ResponseEntity<ListaPromocao>(listaPromocao, HttpStatus.OK);			
 		} catch (Exception e) {
 			return new ResponseEntity<DefaultMsg>(DefaultMsg.error(e.getMessage()), HttpStatus.BAD_REQUEST);
