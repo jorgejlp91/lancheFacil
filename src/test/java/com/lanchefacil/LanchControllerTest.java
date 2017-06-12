@@ -26,7 +26,7 @@ import com.lanchefacil.entity.ListaPromocao;
 import com.lanchefacil.util.MemDatabase;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class LanchControllerTest {
 
 	private static final String URL_LANCHE = "/lanchefacil/lanches/";
@@ -44,8 +44,9 @@ public class LanchControllerTest {
 	private ListaIngredientes listaIng;
 	private IngredienteDomain alface = new IngredienteDomain(MemDatabase.ID_ALFACE, "Alface", 0.4);
 	private IngredienteDomain bacon = new IngredienteDomain(MemDatabase.ID_BACON, "Bacon", 2.0);
-	private IngredienteDomain carne = new IngredienteDomain(MemDatabase.ID_CARNE, "Hambúrguer de carne", 3.0);
-	private IngredienteDomain queijo = new IngredienteDomain(MemDatabase.ID_MUITOQUEIJO, "Queijo", 0.8);
+	private IngredienteDomain carne = new IngredienteDomain(MemDatabase.ID_CARNE,
+			"Hambúrguer de carne", 3.0);
+	private IngredienteDomain queijo = new IngredienteDomain(MemDatabase.ID_QUEIJO, "Queijo", 0.8);
 
 	/**
 	 * Obtém os ingredientes e lanches direto da base de dados
@@ -60,7 +61,6 @@ public class LanchControllerTest {
 	 * Testa verificando se o valor de cada lanche está de acordo com o a
 	 * somatória do valor dos ingredientes
 	 */
-	@Test
 	public void valoresLanchesCardapioTest() {
 		ResponseEntity<LancheDomain> xBacon = this.restTemplate
 				.getForEntity(URL_LANCHE + MemDatabase.ID_XBACON, LancheDomain.class);
@@ -89,7 +89,6 @@ public class LanchControllerTest {
 	 * 
 	 * @throws ParseException
 	 */
-	@Test
 	public void validaPromocaoLight() throws ParseException {
 
 		alface.setQuantidade(2);
@@ -150,7 +149,6 @@ public class LanchControllerTest {
 	 * 
 	 * @throws ParseException
 	 */
-	@Test
 	public void validaPromocaoCarne() throws ParseException {
 
 		carne.setQuantidade(4);
